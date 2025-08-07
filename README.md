@@ -49,110 +49,13 @@ df = pd.read_excel('used_cars.xlsx')
 df.head()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>brand</th>
-      <th>model</th>
-      <th>model_year</th>
-      <th>milage</th>
-      <th>fuel_type</th>
-      <th>engine</th>
-      <th>transmission</th>
-      <th>Color</th>
-      <th>accident</th>
-      <th>price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Ford</td>
-      <td>Utility Police Interceptor Base</td>
-      <td>2013</td>
-      <td>51,000 mi.</td>
-      <td>E85 Flex Fuel</td>
-      <td>300.0HP 3.7L V6 Cylinder Engine Flex Fuel Capa...</td>
-      <td>6-Speed A/T</td>
-      <td>Black</td>
-      <td>At least 1 accident or damage reported</td>
-      <td>10300</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Hyundai</td>
-      <td>Palisade SEL</td>
-      <td>2021</td>
-      <td>34,742 mi.</td>
-      <td>Gasoline</td>
-      <td>3.8L V6 24V GDI DOHC</td>
-      <td>8-Speed Automatic</td>
-      <td>Moonlight Cloud</td>
-      <td>At least 1 accident or damage reported</td>
-      <td>38005</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Lexus</td>
-      <td>RX 350 RX 350</td>
-      <td>2022</td>
-      <td>22,372 mi.</td>
-      <td>Gasoline</td>
-      <td>3.5 Liter DOHC</td>
-      <td>Automatic</td>
-      <td>Blue</td>
-      <td>None reported</td>
-      <td>54598</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>INFINITI</td>
-      <td>Q50 Hybrid Sport</td>
-      <td>2015</td>
-      <td>88,900 mi.</td>
-      <td>Hybrid</td>
-      <td>354.0HP 3.5L V6 Cylinder Engine Gas/Electric H...</td>
-      <td>7-Speed A/T</td>
-      <td>Black</td>
-      <td>None reported</td>
-      <td>15500</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Audi</td>
-      <td>Q3 45 S line Premium Plus</td>
-      <td>2021</td>
-      <td>9,835 mi.</td>
-      <td>Gasoline</td>
-      <td>2.0L I4 16V GDI DOHC Turbo</td>
-      <td>8-Speed Automatic</td>
-      <td>Glacier White Metallic</td>
-      <td>None reported</td>
-      <td>34999</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+| brand    | model                           | model_year | milage      | fuel_type     | engine                                         | transmission      | Color                | accident                              | price  |
+|----------|---------------------------------|------------|-------------|---------------|------------------------------------------------|-------------------|----------------------|----------------------------------------|--------|
+| Ford     | Utility Police Interceptor Base | 2013       | 51,000 mi.  | E85 Flex Fuel | 300.0HP 3.7L V6 Cylinder Engine Flex Fuel Capab | 6-Speed A/T       | Black                | At least 1 accident or damage reported | 10300  |
+| Hyundai  | Palisade SEL                    | 2021       | 34,742 mi.  | Gasoline      | 3.8L V6 24V GDI DOHC                           | 8-Speed Automatic | Moonlight Cloud      | At least 1 accident or damage reported | 38005  |
+| Lexus    | RX 350 RX 350                   | 2022       | 22,372 mi.  | Gasoline      | 3.5 Liter DOHC                                 | Automatic         | Blue                 | None reported                          | 54598  |
+| INFINITI | Q50 Hybrid Sport                | 2015       | 88,900 mi.  | Hybrid        | 354.0HP 3.5L V6 Cylinder Engine Gas/Electric H. | 7-Speed A/T       | Black                | None reported                          | 15500  |
+| Audi     | Q3 45 S line Premium Plus       | 2021       | 9,835 mi.   | Gasoline      | 2.0L I4 16V GDI DOHC Turbo                     | 8-Speed Automatic | Glacier White Metallic| None reported                          | 34999  |
 
 
 ## 1.2 Dataset Shape & Columns
@@ -228,72 +131,14 @@ def extract_engine_size(s):
 df['engine_size'] = df['engine'].apply(extract_engine_size)
 
 ```
+| milage  | engine                                              | engine_size |
+|---------|-----------------------------------------------------|-------------|
+| 51000.0 | 300.0HP 3.7L V6 Cylinder Engine Flex Fuel Capa...   | 3.7         |
+| 34742.0 | 3.8L V6 24V GDI DOHC                                | 3.8         |
+| 22372.0 | 3.5 Liter DOHC                                      | 3.5         |
+| 88900.0 | 354.0HP 3.5L V6 Cylinder Engine Gas/Electric H...   | 3.5         |
+| 9835.0  | 2.0L I4 16V GDI DOHC Turbo                          | 2.0         |
 
-
-```python
-df[['milage','engine','engine_size']].head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>milage</th>
-      <th>engine</th>
-      <th>engine_size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>51000.0</td>
-      <td>300.0HP 3.7L V6 Cylinder Engine Flex Fuel Capa...</td>
-      <td>3.7</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>34742.0</td>
-      <td>3.8L V6 24V GDI DOHC</td>
-      <td>3.8</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>22372.0</td>
-      <td>3.5 Liter DOHC</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>88900.0</td>
-      <td>354.0HP 3.5L V6 Cylinder Engine Gas/Electric H...</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>9835.0</td>
-      <td>2.0L I4 16V GDI DOHC Turbo</td>
-      <td>2.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -410,97 +255,13 @@ Visualize key variables and spot potential outliers or trends to guide feature e
 df.describe().T
 
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>count</th>
-      <th>mean</th>
-      <th>std</th>
-      <th>min</th>
-      <th>25%</th>
-      <th>50%</th>
-      <th>75%</th>
-      <th>max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>model_year</th>
-      <td>719.0</td>
-      <td>2012.831711</td>
-      <td>5.710353</td>
-      <td>1996.0</td>
-      <td>2008.0</td>
-      <td>2014.0</td>
-      <td>2017.0</td>
-      <td>2023.0</td>
-    </tr>
-    <tr>
-      <th>milage</th>
-      <td>719.0</td>
-      <td>97728.930459</td>
-      <td>56421.470489</td>
-      <td>500.0</td>
-      <td>54950.0</td>
-      <td>88977.0</td>
-      <td>134000.0</td>
-      <td>399000.0</td>
-    </tr>
-    <tr>
-      <th>accident</th>
-      <td>719.0</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>price</th>
-      <td>719.0</td>
-      <td>24832.695410</td>
-      <td>19183.272439</td>
-      <td>2300.0</td>
-      <td>11000.0</td>
-      <td>19000.0</td>
-      <td>32225.0</td>
-      <td>127899.0</td>
-    </tr>
-    <tr>
-      <th>engine_size</th>
-      <td>719.0</td>
-      <td>3.744506</td>
-      <td>1.429931</td>
-      <td>1.3</td>
-      <td>2.5</td>
-      <td>3.5</td>
-      <td>4.7</td>
-      <td>8.3</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|           | count |      mean    |      std     |   min  |   25%   |   50%   |   75%   |   max   |
+|-----------|-------|-------------|-------------|--------|---------|---------|---------|---------|
+| model_year| 719.0 | 2012.83     | 5.71        | 1996.0 | 2008.0  | 2014.0  | 2017.0  | 2023.0  |
+| milage    | 719.0 | 97728.93    | 56421.47    | 500.0  | 54950.0 | 88977.0 | 134000.0| 399000.0|
+| accident  | 719.0 | 1.00        | 0.00        | 1.0    | 1.0     | 1.0     | 1.0     | 1.0     |
+| price     | 719.0 | 24832.70    | 19183.27    | 2300.0 | 11000.0 | 19000.0 | 32225.0 |127899.0 |
+| engine_size|719.0 | 3.74        | 1.43        | 1.3    | 2.5     | 3.5     | 4.7     | 8.3     |
 
 
 
