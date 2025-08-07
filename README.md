@@ -838,7 +838,3 @@ plt.show()
 *These actionable insights help drive smarter buying, selling, and inventory management decisions in the used car market.*
 
 
-
-```python
-
-```
