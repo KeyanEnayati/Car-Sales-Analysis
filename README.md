@@ -780,6 +780,41 @@ Show which variables have the biggest impact in the linear model.
 - **Feature Impact:**  
   The most influential features are `log_milage`, `model_year`, and `engine_size`. Higher log milage and newer model years tend to increase predicted price, while raw milage has a very small negative_
 
+## 🧭 Step 8.4: SHAP Model Explainability
+
+**Objective:**
+Quantify each feature’s contribution to the prediction and visualise global/individual effects for our best model (Linear Regression). 
+
+>💡 Note: The target is log_price. SHAP values here are on the log-price scale. Use np.expm1(...) if you need to convert predictions back to the original price scale for narrative.
+
+```python
+
+# --- 8.4 SHAP Explainability — Linear Regression ---
+%pip install shap --user
+import shap
+
+# Build explainer on training data and compute SHAP values for test data
+explainer = shap.Explainer(lr, X_train)
+shap_values = explainer(X_test)
+
+# 1) Global importance: which features matter most overall
+shap.plots.bar(shap_values, max_display=15)
+
+# 2) Global summary: direction and spread of effects across samples
+shap.plots.beeswarm(shap_values, max_display=15)
+
+# 3) Local explanation: one specific car (change idx to inspect others)
+idx = 0
+shap.plots.waterfall(shap_values[idx])
+```
+
+![png](output/output_79_0.png)
+![png](output/output_79_1.png)
+![png](output/output_79_2.png)
+
+*SHAP analysis highlights that mileage is the dominant driver of used car prices, with higher mileage sharply reducing value. Model year and engine size also contribute, with newer cars and larger engines generally increasing price. The summary plot confirms that low mileage and recent models push prices up, while the force plot illustrates how for a 2018 vehicle, the positive effect of its recency is offset by the negative impact of high mileage.*
+
+---
 
 # 📊 Step 9: Actual vs. Predicted Price (Test Results)
 
